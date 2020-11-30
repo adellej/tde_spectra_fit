@@ -16,7 +16,7 @@ TDE Specta Fit
 
 
 
-Package to fit TDE radio spectra to determine the spectral index, p, and the peak flux desnity and frequency of the spectrum
+Package to fit TDE radio spectra to determine the spectral index, p, the peak flux density and peak frequency of the spectrum. 
 
 
 * Free software: MIT license
