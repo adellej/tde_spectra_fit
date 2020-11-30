@@ -1,5 +1,5 @@
 ==============
-TDE Specta Fit
+TDE Spectra Fit
 ==============
 
 
