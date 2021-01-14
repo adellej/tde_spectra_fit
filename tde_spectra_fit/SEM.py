@@ -14,6 +14,7 @@ class SEM:
         z=0.0206,
         t=246,
         geo='spherical',
+        fV_correct=True,
         va_gtr_vm=True,
         va=None,
         vm=None,
@@ -31,6 +32,7 @@ class SEM:
             - z is redshift 
             - t is time since jet was launched in days
             - geo, str, is the assumed geometry, can be spherical or conical 
+            - fV_correct, True or False, set True to correct volume as in Alexander et al 2016 to assume that the emission emanates from a shell with a thickness of 0.1 of the blastwave radius. 
             - va_gtr_vm set True if the synchrotron self absorption frequency, va, is above or equal to vm, the synhcrotron frequency at which the electrons emit. Else, set false. If va and vm cannot be identified in the spectrum set va_gtr_vm = False
             - va and vm only requred if va_gtr_vm = False
             - save: option to write parameters to text file 
@@ -44,7 +46,10 @@ class SEM:
 
         if geo == 'spherical':
             self.fA = 1.0
-            self.fV = 4.0 / 3.0
+            if fV_correct:
+                self.fV = 4.0 / 3.0 * (1 - 0.9 ** 3)
+            else:
+                self.fV = 4.0 / 3.0
         elif geo == 'conical':
             self.fA = 0.1
             self.fV = 4.0 / 3.0
@@ -89,7 +94,7 @@ class SEM:
         #     * self.fV ** (-1 / 19)
         #     * 4 ** (1 / 19)
         # )
-        fV = 4 / 3  # * (1 - 0.9 ** 3)
+        fV = self.fV
 
         eta = 1
 
@@ -121,7 +126,7 @@ class SEM:
         chi_e = (self.p - 2 / self.p - 1) * eps_e * (mp / me)
         LF = 2 / chi_e + 1
         fA = self.fA
-        fV = 4 / 3  # * (1 - 0.9 ** 3)
+        fV = self.fV
 
         d = self.d
         z = self.z
@@ -198,9 +203,7 @@ class SEM:
         return Ne
 
     def get_ambientden(self, Ne, Req):
-        V = (
-            4 / 3 * np.pi * ((Req ** 3 - (0.9 * Req) ** 3))
-        )  # for a spherical shell with radius 0.1Req
+        V = self.fV * np.pi * Req ** 3  # for a spherical shell with radius 0.1Req
         ne = Ne / V
         return ne
 
@@ -223,8 +226,8 @@ class SEM:
         Eeq = self.get_Eeq()
         Ne = self.get_Ne(Req)
         ne = self.get_ambientden(Ne, Req)
-        # beta_ej = self.get_outflow_velocity(Req)
-        # M_ej = self.get_outflow_mass(Eeq, beta_ej)
+        beta_ej = self.get_outflow_velocity(Req)
+        M_ej = self.get_outflow_mass(Eeq, beta_ej)
         B = self.get_Bfield(Req)
 
         print(f'Assuming ' + self.geo + ' geometry..')
@@ -236,8 +239,8 @@ class SEM:
         print(f'For this radius and energy, I find:')
         # print(f'Electron Lorentz factor = {LF_e}')
         # print(f'Bulk source Lorentz factor: {LF}')
-       # print(f'Outflow velocity: {beta_ej} c')
-       # print(f'Outflow mass: {M_ej/self.msun} msun')
+        print(f'Outflow velocity: {beta_ej} c')
+        print(f'Outflow mass: {M_ej/self.msun} msun')
         print(f'Ambient density: {ne} cm^-3')
         print(f'Magnetic field: {B} G')
         print('--------------------------------------------------')
