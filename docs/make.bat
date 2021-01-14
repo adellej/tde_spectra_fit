@@ -9,7 +9,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=.
 set BUILDDIR=_build
-set SPHINXPROJ=tde_specta_fit
+set SPHINXPROJ=tde_spectra_fit
 
 if "%1" == "" goto help
 

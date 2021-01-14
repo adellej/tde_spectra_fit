@@ -11,11 +11,15 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = [ ]
+requirements = []
 
-setup_requirements = ['pytest-runner', ]
+setup_requirements = [
+    'pytest-runner',
+]
 
-test_requirements = ['pytest>=3', ]
+test_requirements = [
+    'pytest>=3',
+]
 
 setup(
     author="Adelle Goodwin",
@@ -38,13 +42,13 @@ setup(
     license="MIT license",
     long_description=readme + '\n\n' + history,
     include_package_data=True,
-    keywords='tde_specta_fit',
-    name='tde_specta_fit',
-    packages=find_packages(include=['tde_specta_fit', 'tde_specta_fit.*']),
+    keywords='tde_spectra_fit',
+    name='tde_spectra_fit',
+    packages=find_packages(include=['tde_spectra_fit', 'tde_spectra_fit.*']),
     setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,
-    url='https://github.com/adellej/tde_specta_fit',
+    url='https://github.com/adellej/tde_spectra_fit',
     version='0.1.0',
     zip_safe=False,
 )

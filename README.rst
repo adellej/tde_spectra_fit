@@ -1,15 +1,15 @@
 ==============
-TDE Specta Fit
+TDE Spectra Fit
 ==============
 
 
-.. image:: https://img.shields.io/pypi/v/tde_specta_fit.svg
-        :target: https://pypi.python.org/pypi/tde_specta_fit
+.. image:: https://img.shields.io/pypi/v/tde_spectra_fit.svg
+        :target: https://pypi.python.org/pypi/tde_spectra_fit
 
-.. image:: https://img.shields.io/travis/adellej/tde_specta_fit.svg
-        :target: https://travis-ci.org/adellej/tde_specta_fit
+.. image:: https://img.shields.io/travis/adellej/tde_spectra_fit.svg
+        :target: https://travis-ci.org/adellej/tde_spectra_fit
 
-.. image:: https://readthedocs.org/projects/tde-specta-fit/badge/?version=latest
+.. image:: https://readthedocs.org/projects/tde-spectra-fit/badge/?version=latest
         :target: https://tde-specta-fit.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 

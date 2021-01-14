@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""Tests for `tde_specta_fit` package."""
+"""Tests for `tde_spectra_fit` package."""
 
 import pytest
 
 
-from tde_specta_fit import tde_specta_fit
+from tde_spectra_fit import tde_spectra_fit
 
 
 @pytest.fixture

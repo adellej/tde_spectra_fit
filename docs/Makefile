@@ -4,7 +4,7 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = python -msphinx
-SPHINXPROJ    = tde_specta_fit
+SPHINXPROJ    = tde_spectra_fit
 SOURCEDIR     = .
 BUILDDIR      = _build
 
