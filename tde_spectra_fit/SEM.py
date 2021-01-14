@@ -22,7 +22,7 @@ class SEM:
         name=None,
     ):
         """ 
-        This class calculates physical TDE system parameters from observed parameters from radio spectral observations. It uses the equations from Barniol and Duran (2013). These equations assume the Newtonian case in which Gamma = 1
+        This class calculates physical TDE system parameters from observed parameters from radio spectral observations. It uses the equations from Barniol and Duran (2013).
 
         Parameters:
             - vp is peak frequency in GHz
@@ -83,17 +83,6 @@ class SEM:
         vp = self.vp / 10
         fA = self.fA
         p = self.p
-
-        # Req = (
-        #     3.2e15
-        #     * self.Fvp ** (9 / 19)
-        #     * (self.d / 1e26) ** (18 / 19)
-        #     * (self.vp / 10) ** (-1)
-        #     * (1 + self.z) ** (-10 / 19)
-        #     * self.fA ** (-8 / 19)
-        #     * self.fV ** (-1 / 19)
-        #     * 4 ** (1 / 19)
-        # )
         fV = self.fV
 
         eta = 1
@@ -105,7 +94,7 @@ class SEM:
             * LF ** ((p + 8) / (13 + 2 * p))
             * (LF - 1) ** ((2 - p) / (13 + 2 * p))
             * xi ** (1 / (13 + 2 * p))
-        )  # * 4**(1/19)
+        )
 
         Req = (
             prefac
@@ -135,16 +124,7 @@ class SEM:
         vp = self.vp / 10
         xi = 1 + (1 / eps_e)
         p = self.p
-        # Eeq = (
-        #     1.9e46
-        #     * self.Fvp ** (23 / 19)
-        #     * (self.d / 1e26) ** (46 / 19)
-        #     * (self.vp / 10) ** (-1)
-        #     * (1 + self.z) ** (-42 / 19)
-        #     * self.fA ** (-12 / 19)
-        #     * self.fV ** (8 / 19)
-        #     * 4 ** (11 / 19)
-        # )
+
         prefac2 = (
             1.3e48
             * 21.8 ** ((-2 * (p + 1)) / (13 + 2 * p))
@@ -203,7 +183,7 @@ class SEM:
         return Ne
 
     def get_ambientden(self, Ne, Req):
-        V = self.fV * np.pi * Req ** 3  # for a spherical shell with radius 0.1Req
+        V = self.fV * np.pi * Req ** 3
         ne = Ne / V
         return ne
 
